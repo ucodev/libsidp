@@ -1,0 +1,85 @@
+# Project: libsidp
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = dllmain.o ../src/chain/incoming/chain_in.o ../src/chain/outgoing/chain_out.o ../src/layer/compression/cl_api.o ../src/layer/encryption/aes256cbc.o ../src/layer/encryption/el_api.o ../src/layer/session/default.o ../src/layer/session/sl_api.o ../src/sequence/authentication/seq_auth.o ../src/sequence/authentication/srp.o ../src/sequence/data/seq_data.o ../src/sequence/negotiation/seq_negotiation.o ../src/sidp.o ../src/skt.o ../src/sequence/init/seq_init.o ../src/bitops.o ../src/layer/encryption/xsalsa20.o ../src/layer/compression/fastlz.o $(RES)
+LINKOBJ  = dllmain.o ../src/chain/incoming/chain_in.o ../src/chain/outgoing/chain_out.o ../src/layer/compression/cl_api.o ../src/layer/encryption/aes256cbc.o ../src/layer/encryption/el_api.o ../src/layer/session/default.o ../src/layer/session/sl_api.o ../src/sequence/authentication/seq_auth.o ../src/sequence/authentication/srp.o ../src/sequence/data/seq_data.o ../src/sequence/negotiation/seq_negotiation.o ../src/sidp.o ../src/skt.o ../src/sequence/init/seq_init.o ../src/bitops.o ../src/layer/encryption/xsalsa20.o ../src/layer/compression/fastlz.o $(RES)
+LIBS =  -L"D:/Dev-Cpp/lib" --no-export-all-symbols --add-stdcall-alias ./objects/libnacl.a ./objects/libeay32.lib ./objects/libfastlz.a -lcrypt32 -lwsock32  -lgmon  
+INCS =  -I"D:/Dev-Cpp/include" 
+CXXINCS =  -I"D:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/Dev-Cpp/include/c++/3.4.2"  -I"D:/Dev-Cpp/include" 
+BIN  = libsidp.dll
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1   -pg
+CFLAGS = $(INCS) -DBUILDING_DLL=1 -DCOMPILE_WIN32=1 -I./include -I../include   -pg
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before libsidp.dll all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=liblibsidp.def
+STATICLIB=liblibsidp.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+dllmain.o: dllmain.c
+	$(CC) -c dllmain.c -o dllmain.o $(CFLAGS)
+
+../src/chain/incoming/chain_in.o: ../src/chain/incoming/chain_in.c
+	$(CC) -c ../src/chain/incoming/chain_in.c -o ../src/chain/incoming/chain_in.o $(CFLAGS)
+
+../src/chain/outgoing/chain_out.o: ../src/chain/outgoing/chain_out.c
+	$(CC) -c ../src/chain/outgoing/chain_out.c -o ../src/chain/outgoing/chain_out.o $(CFLAGS)
+
+../src/layer/compression/cl_api.o: ../src/layer/compression/cl_api.c
+	$(CC) -c ../src/layer/compression/cl_api.c -o ../src/layer/compression/cl_api.o $(CFLAGS)
+
+../src/layer/encryption/aes256cbc.o: ../src/layer/encryption/aes256cbc.c
+	$(CC) -c ../src/layer/encryption/aes256cbc.c -o ../src/layer/encryption/aes256cbc.o $(CFLAGS)
+
+../src/layer/encryption/el_api.o: ../src/layer/encryption/el_api.c
+	$(CC) -c ../src/layer/encryption/el_api.c -o ../src/layer/encryption/el_api.o $(CFLAGS)
+
+../src/layer/session/default.o: ../src/layer/session/default.c
+	$(CC) -c ../src/layer/session/default.c -o ../src/layer/session/default.o $(CFLAGS)
+
+../src/layer/session/sl_api.o: ../src/layer/session/sl_api.c
+	$(CC) -c ../src/layer/session/sl_api.c -o ../src/layer/session/sl_api.o $(CFLAGS)
+
+../src/sequence/authentication/seq_auth.o: ../src/sequence/authentication/seq_auth.c
+	$(CC) -c ../src/sequence/authentication/seq_auth.c -o ../src/sequence/authentication/seq_auth.o $(CFLAGS)
+
+../src/sequence/authentication/srp.o: ../src/sequence/authentication/srp.c
+	$(CC) -c ../src/sequence/authentication/srp.c -o ../src/sequence/authentication/srp.o $(CFLAGS)
+
+../src/sequence/data/seq_data.o: ../src/sequence/data/seq_data.c
+	$(CC) -c ../src/sequence/data/seq_data.c -o ../src/sequence/data/seq_data.o $(CFLAGS)
+
+../src/sequence/negotiation/seq_negotiation.o: ../src/sequence/negotiation/seq_negotiation.c
+	$(CC) -c ../src/sequence/negotiation/seq_negotiation.c -o ../src/sequence/negotiation/seq_negotiation.o $(CFLAGS)
+
+../src/sidp.o: ../src/sidp.c
+	$(CC) -c ../src/sidp.c -o ../src/sidp.o $(CFLAGS)
+
+../src/skt.o: ../src/skt.c
+	$(CC) -c ../src/skt.c -o ../src/skt.o $(CFLAGS)
+
+../src/sequence/init/seq_init.o: ../src/sequence/init/seq_init.c
+	$(CC) -c ../src/sequence/init/seq_init.c -o ../src/sequence/init/seq_init.o $(CFLAGS)
+
+../src/bitops.o: ../src/bitops.c
+	$(CC) -c ../src/bitops.c -o ../src/bitops.o $(CFLAGS)
+
+../src/layer/encryption/xsalsa20.o: ../src/layer/encryption/xsalsa20.c
+	$(CC) -c ../src/layer/encryption/xsalsa20.c -o ../src/layer/encryption/xsalsa20.o $(CFLAGS)
+
+../src/layer/compression/fastlz.o: ../src/layer/compression/fastlz.c
+	$(CC) -c ../src/layer/compression/fastlz.c -o ../src/layer/compression/fastlz.o $(CFLAGS)

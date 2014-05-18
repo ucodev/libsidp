@@ -1,0 +1,14 @@
+CC=gcc
+LDFLAGS=-shared
+CCFLAGS=-DCOMPILE_POSIX=1 -DWITH_LZO_SUPPORT=1 -DUSE_MINILZO=1 -D_REENTRANT -m64 --strict-aliasing -fPIC -Werror -Wall -Wno-deprecated-declarations -g
+MAKE=CC='${CC}' CCFLAGS='${CCFLAGS}' LDFLAGS='${LDFLAGS}' make
+
+compile:
+	${MAKE} -C src/
+
+clean:
+	${MAKE} -C src/ clean
+
+install:
+	${MAKE} -C src/ install
+

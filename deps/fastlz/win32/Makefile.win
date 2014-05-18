@@ -1,0 +1,37 @@
+# Project: libfastlz
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = dllmain.o ../src/fastlz.o $(RES)
+LINKOBJ  = dllmain.o ../src/fastlz.o $(RES)
+LIBS =  -L"D:/Dev-Cpp/lib" --no-export-all-symbols --add-stdcall-alias  -lgmon -pg  
+INCS =  -I"D:/Dev-Cpp/include" 
+CXXINCS =  -I"D:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/Dev-Cpp/include/c++/3.4.2"  -I"D:/Dev-Cpp/include" 
+BIN  = libfastlz.dll
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1   -pg
+CFLAGS = $(INCS) -DBUILDING_DLL=1 -DCOMPILE_WIN32=1 -I../include   -pg
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before libfastlz.dll all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=liblibfastlz.def
+STATICLIB=liblibfastlz.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+dllmain.o: dllmain.c
+	$(CC) -c dllmain.c -o dllmain.o $(CFLAGS)
+
+../src/fastlz.o: ../src/fastlz.c
+	$(CC) -c ../src/fastlz.c -o ../src/fastlz.o $(CFLAGS)

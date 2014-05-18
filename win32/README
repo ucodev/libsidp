@@ -1,0 +1,7 @@
+- Before working on win32 project:
+
+ * Deploy the libeay32.lib and libfastlz.a files into the objects/ directory (must be compiled first).
+ * Compile all the required Dynamic Linked Libraries in the ../deps folder and deploy the binary files into the dll/ folder.
+ * Also deploy the libeay32.dll file into the dll/ folder.
+
+
