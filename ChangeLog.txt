@@ -1,0 +1,5 @@
+- v0.99c
+
+ - Added support for chacha-avx2 (https://github.com/sneves/chacha-avx2)
+
+
