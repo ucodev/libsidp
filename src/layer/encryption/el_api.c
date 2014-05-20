@@ -29,6 +29,9 @@
 #if !defined(NO_XSALSA20)
 #include "el_xsalsa20.h"
 #endif
+#if !defined(NO_CHACHA_AVX2)
+#include "el_chacha_avx2.h"
+#endif
 #include "el_api.h"
 
 /**
@@ -60,6 +63,17 @@ int el_data_init(struct el_data *eld, int cipher_type) {
 		eld->decrypt_output_len = el_xsalsa20_decrypt_output_len;
 		eld->encrypt = el_xsalsa20_encrypt_data;
 		eld->decrypt = el_xsalsa20_decrypt_data;
+
+		return eld->init();
+#endif
+#if !defined(NO_CHACHA_AVX2)
+	} else if (cipher_type == EL_CIPHER_TYPE_CHACHA_AVX2) {
+		eld->init = el_chacha_avx2_init;
+		eld->create_key = el_chacha_avx2_create_key;
+		eld->encrypt_output_len = el_chacha_avx2_encrypt_output_len;
+		eld->decrypt_output_len = el_chacha_avx2_decrypt_output_len;
+		eld->encrypt = el_chacha_avx2_encrypt_data;
+		eld->decrypt = el_chacha_avx2_decrypt_data;
 
 		return eld->init();
 #endif

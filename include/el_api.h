@@ -39,7 +39,12 @@
  * @see el_data_init()
  */
 #define EL_CIPHER_TYPE_XSALSA20	2
-
+/**
+ * @def EL_CIPHER_TYPE_CHACHA_AVX2
+ * @brief ChaCha-AVX2 cipher type
+ * @see el_data_init()
+ */
+#define EL_CIPHER_TYPE_CHACHA_AVX2 3
 /**
  * @struct el_data
  * @brief Data structure containing the abstraction of the Encryption Layer.
