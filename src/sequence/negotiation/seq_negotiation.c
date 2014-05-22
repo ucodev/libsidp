@@ -154,6 +154,8 @@ int sidp_seq_negotiation_user(struct sidpconn *conn) {
 	/* Test encryption negotiation */
 	if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_XSALSA20_FL)) {
 		set_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_XSALSA20_FL);
+	} else if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_CHACHA_AVX_FL)) {
+		set_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_CHACHA_AVX_FL);
 	} else if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_CHACHA_AVX2_FL)) {
 		set_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_CHACHA_AVX2_FL);
 	} else if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_AES256_FL)) {
@@ -224,6 +226,8 @@ int sidp_seq_negotiation_host(struct sidpconn *conn) {
 	/* Test encryption negotiation */
 	if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_XSALSA20_FL)) {
 		set_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_XSALSA20_FL);
+	} else if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_CHACHA_AVX_FL)) {
+		set_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_CHACHA_AVX_FL);
 	} else if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_CHACHA_AVX2_FL)) {
 		set_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_CHACHA_AVX2_FL);
 	} else if (test_bit(&neg_data.flags, SIDP_SUPPORT_CIPHER_AES256_FL)) {

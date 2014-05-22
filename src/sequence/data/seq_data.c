@@ -87,6 +87,9 @@ static int sidp_seq_data_get_cipher_type(const struct sidpconn *conn) {
 	if (test_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_XSALSA20_FL))
 		return EL_CIPHER_TYPE_XSALSA20;
 
+	if (test_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_CHACHA_AVX_FL))
+		return EL_CIPHER_TYPE_CHACHA_AVX;
+
 	if (test_bit(&conn->negotiate_flags, SIDP_NEGOTIATE_CIPHER_CHACHA_AVX2_FL))
 		return EL_CIPHER_TYPE_CHACHA_AVX2;
 #endif
